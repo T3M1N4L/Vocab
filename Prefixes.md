@@ -34,6 +34,16 @@
 * `Lateral` - side
 * `Litera` - letter
 * `Luc, Lum` - light
+* `Man, Manu` - hand
+* `Pend, Pens` - hang
+* `Pon, Pos` - put
+* `Scribe, Script` - write
+* `Simil, Simul` - similar, like, same
+* `Sol, Soli` - alone, lonley, single
+* `Solv, solu, solut` - loosen
+* `Und, unda` - wave, flow
+* `Var, Vera, Veri` - true, truth
+* `Vid, Vis` - see, look, sight
 
 
 # Similar
@@ -45,4 +55,5 @@
 * `over` - (in, im),(ob) 
 * `opposite` - (de), (dis)
 * `apart` - (Dis), (Se)
+* `flow` - (Und, Unda), (Flu, Fluc, Flux)
 
