@@ -42,7 +42,7 @@
 * `Sol, Soli` - alone, lonley, single
 * `Solv, solu, solut` - loosen
 * `Und, unda` - wave, flow
-* `Var, Vera, Veri` - true, truth
+* `Ver, Vera, Veri` - true, truth
 * `Vid, Vis` - see, look, sight
 
 
