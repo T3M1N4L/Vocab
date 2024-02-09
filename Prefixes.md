@@ -53,7 +53,7 @@
 * `from` - (a,ab,abs), (e, ex)
 * `against` - (ob), (contra, counter, contro),(in, im)
 * `over` - (in, im),(ob) 
-* `opposite` - (de), (dis)
+* `opposite of` - (de), (dis)
 * `apart` - (Dis), (Se)
 * `flow` - (Und, Unda), (Flu, Fluc, Flux)
 
