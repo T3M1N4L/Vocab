@@ -27,10 +27,10 @@
         <hr>
 <style>
     * {
-        text-decoration: none;
         color: #c5c7c9;
         background-color: rgb(0, 0, 0);
         font-family: monospace, monospace;
+        text-decoration: none;
         
     }
     h1 {
@@ -44,7 +44,7 @@
         text-decoration: rgb(117, 167, 255) wavy underline;
         text-underline-offset: 6px;
         line-height: 3;
-        font-family: monospace, monospace;
+        font-family: monospace;
         font-size: 13;
         margin: 2px;
     }
@@ -52,6 +52,7 @@
         color:rgb(43, 43, 43);
         text-decoration: rgb(50, 50, 50) wavy underline;
         text-underline-offset: 3px;
+        font-family: monospace;
     }
     
     hr {
@@ -109,11 +110,13 @@
     border-color: transparent
   }
 }
+
+
 </style>
 <DL><p>
         <h3># <strong>ALL</strong> the Prefixes</h3>
         <a class="quizlet" href="https://quizlet.com/858837887/">All of them (Quizlet)</a>
-        <a class="Prefixes" href="./Prefixes.html">All of them (To look over / show which are similar)</a>
+        <div style="text-decoration: none !important;" class="rainbow-text animated" data-splitting> <a class="Prefixes" style="text-decoration: none !important;"  href="./Prefixes.html">All of them (To look over / show which are similar)</a></div><b>// Click on the rainbow!!!</b> 
         <hr>
         <h3># Chapter 4</h3>
         <h4>Part 1</h4>
@@ -142,3 +145,27 @@
         <hr>
 </DL><p>
     <b>// Made by Eham James (T3RM1N4L)</b>
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css">
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
+    <script>Splitting();</script>
+<style>
+
+.rainbow-text.animated .char {
+  animation: rainbow-colors 2s linear infinite;
+  animation-delay: calc(-2s * var(--char-percent));
+  text-underline-offset: 20px;
+}
+.rainbow-text.animated {
+  text-underline-offset: 20px;
+  text-decoration: none !important;
+}
+/* Unfortunately, browsers try to take the shortest distance between transition/animation properties, so a simple `0turn` to `1turn` doesn't get the proper effect. */
+@keyframes rainbow-colors {
+  0% { color: hsl(0turn, 90%, 65%); }
+  25% { color: hsl(.25turn, 90%, 65%); }
+  50% { color: hsl(.5turn, 90%, 65%); }
+  75% { color: hsl(.75turn, 90%, 65%); }
+  100% { color: hsl(1turn, 90%, 65%); }
+}
+</style>
