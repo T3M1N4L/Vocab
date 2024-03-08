@@ -44,7 +44,16 @@
 * `Und, unda` - wave, flow
 * `Ver, Vera, Veri` - true, truth
 * `Vid, Vis` - see, look, sight
-
+* `Aut, Auto` - self
+* `Cracy` - government
+* `Dem, Demo` - people
+* `Pan, Panto` - all, complete
+* `Chron, Chrono` - time
+* `Mania` - madness, insane impulse, craze
+* `Ped` - child
+* `Ortho` - straight, correct
+* `Gen, Geno, Genea` - race, kind, birth
+* `Meter, Metr` - measure
 
 # Similar
 
@@ -56,4 +65,5 @@
 * `opposite of` - (de), (dis)
 * `apart` - (Dis), (Se)
 * `flow` - (Und, Unda), (Flu, Fluc, Flux)
-
+* `kind` - (Gen, Geno, Genea), (Gen, Gener, Genit)
+* `birth` - (Gen, Geno, Genea), (Gen, Gener, Genit)
