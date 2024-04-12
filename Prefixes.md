@@ -54,16 +54,27 @@
 * `Ortho` - straight, correct
 * `Gen, Geno, Genea` - race, kind, birth
 * `Meter, Metr` - measure
+* `Ant, Anti` - agaisnt, opposite
+* `Onym, Onomato` - name, word
+* `Nom, Nem` - management, distribution, law
+* `Phan, Phen` - show, appear
+* `Thermo, Therm` - heat
+* `Prot, Proto` - first
+* `Thesis, Thet` - set, place, put
+* `Aster, Astro, Astr` - star
+* `Gram, Graph` - letter, writing
 
 # Similar
 
-* `away` - (a,ab,abs), (e, ex), (Dis)
-* `before` - (pre), (ante)
-* `from` - (a,ab,abs), (e, ex)
-* `against` - (ob), (contra, counter, contro),(in, im)
-* `over` - (in, im),(ob) 
-* `opposite of` - (de), (dis)
+* `away` - (A,Ab,Abs), (E, Ex), (Dis)
+* `before` - (Pre), (Ante)
+* `from` - (A,Ab,Abs), (E, Ex)
+* `against` - (Ob), (Contra, Counter, Contro),(In, Im), (Ant, Anti)
+* `over` - (In, Im),(Ob) 
+* `opposite of` - (De), (Dis)
 * `apart` - (Dis), (Se)
 * `flow` - (Und, Unda), (Flu, Fluc, Flux)
 * `kind` - (Gen, Geno, Genea), (Gen, Gener, Genit)
 * `birth` - (Gen, Geno, Genea), (Gen, Gener, Genit)
+* `put` - (Pon, Pos), (Thesis, Thet)
+* `letter` - (Gram, Graph), (Litera)
