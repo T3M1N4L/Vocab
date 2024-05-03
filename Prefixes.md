@@ -63,6 +63,7 @@
 * `Thesis, Thet` - set, place, put
 * `Aster, Astro, Astr` - star
 * `Gram, Graph` - letter, writing
+* `Derm, Dermato` - skin
 
 # Similar
 
