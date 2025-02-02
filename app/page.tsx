@@ -2,12 +2,14 @@
 
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const chaptersData = {
   chapters: {
@@ -165,33 +167,57 @@ const platformColors = {
   KnowtPrefixes: "text-emerald-500",
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 12,
+    },
+  },
+}
+
 export default function Page() {
   const [activeTab, setActiveTab] = useState("chapters")
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="container mx-auto px-4 py-8"
-      >
-        <header className="mb-12">
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-4xl font-bold mb-4"
-          >
-            Vocab Study Dump
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-muted-foreground"
-          >
-            Made from Vocabulary For The Highschool Student
-          </motion.p>
+      <div className="container mx-auto px-4 py-8">
+        <header className="mb-12 flex items-center justify-between">
+          <div className="flex items-center">
+            <Image
+              src="https://raw.githubusercontent.com/T3M1N4L/AMOLED-comfy/refs/heads/main/themes/duck.gif"
+              alt="Duck GIF"
+              width={50}
+              height={50}
+              className="mr-4"
+            />
+            <div>
+              <h1 className="text-4xl font-bold mb-2">Vocab Study Dump</h1>
+              <p className="text-muted-foreground">Made from Vocabulary For The Highschool Student</p>
+            </div>
+          </div>
+          <ThemeToggle />
         </header>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-12">
@@ -199,38 +225,32 @@ export default function Page() {
             <TabsTrigger value="chapters">By Chapter</TabsTrigger>
             <TabsTrigger value="prefixes">Prefixes</TabsTrigger>
             <TabsTrigger value="similar">Similar Prefixes</TabsTrigger>
-            <TabsTrigger value="all">All Prefixes</TabsTrigger>
+            <TabsTrigger value="all">All Prefixes Resources</TabsTrigger>
             <TabsTrigger value="contributors">Contributors</TabsTrigger>
           </TabsList>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-            >
-              <TabsContent value="chapters">
-                <div className="grid gap-6">
-                  {Object.entries(chaptersData.chapters).map(([chapter, parts]) => (
-                    <Card key={chapter}>
-                      <CardHeader>
-                        <CardTitle>{chapter}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid gap-6">
-                          {Object.entries(parts).map(([part, resources]) => (
-                            <div key={part} className="space-y-4">
-                              <h3 className="font-semibold text-lg">{part}</h3>
-                              <div className="grid gap-2">
-                                {Object.entries(resources).map(([platform, resource]) => (
-                                  <Link
-                                    key={resource.name}
-                                    href={resource.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
+          <TabsContent value="chapters">
+            <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid gap-6">
+              {Object.entries(chaptersData.chapters).map(([chapter, parts]) => (
+                <motion.div key={chapter} variants={itemVariants}>
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>{chapter}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                        className="grid gap-6"
+                      >
+                        {Object.entries(parts).map(([part, resources]) => (
+                          <motion.div key={part} variants={itemVariants}>
+                            <h3 className="font-semibold text-lg mb-2">{part}</h3>
+                            <div className="grid gap-2">
+                              {Object.entries(resources).map(([platform, resource]) => (
+                                <motion.div key={resource.name} variants={itemVariants}>
+                                  <Link href={resource.url} target="_blank" rel="noopener noreferrer">
                                     <Button variant="ghost" className="w-full justify-between group hover:bg-accent">
                                       <span className={cn("font-medium", platformColors[platform])}>
                                         {resource.name}
@@ -238,133 +258,114 @@ export default function Page() {
                                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                                     </Button>
                                   </Link>
-                                ))}
-                              </div>
+                                </motion.div>
+                              ))}
                             </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="prefixes">
-  <Card>
-    <CardHeader>
-      <CardTitle>Study The Prefixes</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <ul className="space-y-4">
-        {prefixesData.map((prefix, index) => (
-          <motion.li
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.05 }}
-            className="flex items-start space-x-2"
-          >
-            <code className="bg-muted px-1 py-0.5 rounded">{prefix.prefix}</code>
-            <span>-</span>
-            <span>{prefix.meaning}</span>
-          </motion.li>
-        ))}
-      </ul>
-    </CardContent>
-  </Card>
-</TabsContent>
-
-
-<TabsContent value="similar">
-  <Card>
-    <CardHeader>
-      <CardTitle>Similar Prefixes</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <ul className="space-y-4">
-        {similarPrefixes.map((item, index) => (
-          <motion.li
-            key={index}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className="flex items-start space-x-2"
-          >
-            <code className="bg-muted px-1 py-0.5 rounded">{item.meaning}</code>
-            <span>-</span>
-            <span>{item.prefixes.join(", ")}</span>
-          </motion.li>
-        ))}
-      </ul>
-    </CardContent>
-  </Card>
-</TabsContent>
-
-
-
-              <TabsContent value="all">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>All Prefixes Resources</CardTitle>
-                  </CardHeader>
-                  <CardContent className="grid gap-4">
-                    <Link href="https://quizlet.com/911769728/" target="_blank" rel="noopener noreferrer">
-                      <Button variant="ghost" className="w-full justify-between group">
-                        <span className="text-blue-500 font-medium">All Prefixes (Quizlet)</span>
-                        <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </Button>
-                    </Link>
-                    <Link
-                      href="https://knowt.com/flashcards/3f53367e-8634-4f14-9923-45c13c30c651"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button variant="ghost" className="w-full justify-between group">
-                        <span className="text-emerald-500 font-medium">All Prefixes (Knowt)</span>
-                        <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </Button>
-                    </Link>
-                    <Link
-                      href="https://dashboard.blooket.com/set/663452febb214ff79a16630d"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button variant="ghost" className="w-full justify-between group">
-                        <span className="text-cyan-500 font-medium">All Prefixes (Blooket)</span>
-                        <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="contributors">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Main Contributors</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid gap-4">
-                      {["Sivasurya Elango", "Aarush Bagchi", "Siddharthkrishna Kodathala", "EJ"].map((name, index) => (
-                        <motion.div
-                          key={name}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.1 }}
-                          whileHover={{ scale: 1.05 }}
-                          className="p-4 rounded-lg bg-accent text-accent-foreground"
-                        >
-                          {name}
-                        </motion.div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </motion.div>
-          </AnimatePresence>
+          </TabsContent>
+
+          <TabsContent value="prefixes">
+            <Card>
+              <CardHeader>
+                <CardTitle>Study The Prefixes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <motion.ul variants={containerVariants} initial="hidden" animate="visible" className="space-y-4">
+                  {prefixesData.map((prefix, index) => (
+                    <motion.li key={index} variants={itemVariants} className="flex items-start space-x-2">
+                      <code className="bg-muted px-1 py-0.5 rounded">{prefix.prefix}</code>
+                      <span>-</span>
+                      <span>{prefix.meaning}</span>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="similar">
+            <Card>
+              <CardHeader>
+                <CardTitle>Similar Prefixes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <motion.ul variants={containerVariants} initial="hidden" animate="visible" className="space-y-4">
+                  {similarPrefixes.map((item, index) => (
+                    <motion.li key={index} variants={itemVariants} className="flex items-start space-x-2">
+                      <code className="bg-muted px-1 py-0.5 rounded">{item.meaning}</code>
+                      <span>-</span>
+                      <span>{item.prefixes.join(", ")}</span>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="all">
+            <Card>
+              <CardHeader>
+                <CardTitle>All Prefixes Resources</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid gap-4">
+                  {[
+                    { name: "All Prefixes (Quizlet)", url: "https://quizlet.com/911769728/", color: "text-blue-500" },
+                    {
+                      name: "All Prefixes (Knowt)",
+                      url: "https://knowt.com/flashcards/3f53367e-8634-4f14-9923-45c13c30c651",
+                      color: "text-emerald-500",
+                    },
+                    {
+                      name: "All Prefixes (Blooket)",
+                      url: "https://dashboard.blooket.com/set/663452febb214ff79a16630d",
+                      color: "text-cyan-500",
+                    },
+                  ].map((resource, index) => (
+                    <motion.div key={resource.name} variants={itemVariants}>
+                      <Link href={resource.url} target="_blank" rel="noopener noreferrer">
+                        <Button variant="ghost" className="w-full justify-between group">
+                          <span className={cn("font-medium", resource.color)}>{resource.name}</span>
+                          <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </Button>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="contributors">
+            <Card>
+              <CardHeader>
+                <CardTitle>Main Contributors</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid gap-4">
+                  {["Sivasurya Elango", "Aarush Bagchi", "Siddharthkrishna Kodathala", "EJ"].map((name, index) => (
+                    <motion.div
+                      key={name}
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.05 }}
+                      className="p-4 rounded-lg bg-accent text-accent-foreground"
+                    >
+                      {name}
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </CardContent>
+            </Card>
+          </TabsContent>
         </Tabs>
-      </motion.div>
+      </div>
     </div>
   )
 }
