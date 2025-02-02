@@ -42,7 +42,7 @@ const chaptersData = {
         Blooket: { name: "Blooket 5.2 - EJ", url: "https://dashboard.blooket.com/set/65c014e6dfc81c41fc02748d" },
         Gimkit: { name: "Gimkit 5.2 - Aarush", url: "https://www.gimkit.com/view/65c3bcf5ea1eb6002c1b8c47" },
         Knowt: {
-          name: "Knowt 5.2 (just words)- Siddharth (EJ fixed)",
+          name: "Knowt 5.2 (just words) - Siddharth (EJ fixed)",
           url: "https://knowt.com/flashcards/fb88420d-458c-44b9-9ae6-57100844c299",
         },
       },
@@ -52,12 +52,12 @@ const chaptersData = {
         Quizlet: { name: "Quizlet 6.1 - Siva", url: "https://quizlet.com/883416910/" },
         Gimkit: { name: "Gimkit 6.1 - Siva", url: "https://www.gimkit.com/view/65cf74ad5d375d002ced03b8" },
         Knowt: {
-          name: "Knowt 6.1 (just words)- Siddharth",
+          name: "Knowt 6.1 (just words) - Siddharth",
           url: "https://knowt.com/flashcards/7acd39d6-2cfe-4b81-8589-bb6641b4cbf1?isNew=true",
         },
         Blooket: { name: "Blooket 6.1 - Aarush", url: "https://dashboard.blooket.com/set/65e69cd1242f91a6a2dd0197" },
         KnowtPrefixes: {
-          name: "Knowt all prefixes until 6.1 (just prefixes)- EJ",
+          name: "Knowt all prefixes until 6.1 (just prefixes) - EJ",
           url: "https://knowt.com/flashcards/3c774f78-973b-407d-ab74-674db11433c2",
         },
       },
@@ -69,7 +69,7 @@ const chaptersData = {
         },
         Blooket: { name: "Blooket 6.2 - Evan", url: "https://dashboard.blooket.com/set/65eb746f0b61c63014531b52" },
         KnowtPrefixes: {
-          name: "Knowt all prefixes until 6.2 (just prefixes)- EJ",
+          name: "Knowt all prefixes until 6.2 (just prefixes) - EJ",
           url: "https://knowt.com/flashcards/3f53367e-8634-4f14-9923-45c13c30c651",
         },
       },
